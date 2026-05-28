@@ -1,0 +1,367 @@
+/* Estilos tipo GitHub (tema oscuro, básico) */
+
+:root {
+    --color-bg: #0d1117;
+    --color-card: #161b22;
+    --color-border: #30363d;
+    --color-primary: #1f6feb;
+    --color-primary-soft: rgba(31, 111, 235, 0.18);
+    --color-link: #58a6ff;
+    --color-text-main: #c9d1d9;
+    --color-text-muted: #8b949e;
+    --radius-card: 10px;
+    --shadow-soft: none;
+    --font-main: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji",
+        "Segoe UI Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    line-height: 1.5;
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Barra superior */
+
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--color-card);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.top-bar__left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.top-bar__logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+}
+
+.top-bar__brand {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #e6edf3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 52vw;
+}
+
+.top-bar__brand {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.top-bar__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.top-bar__nav a {
+    color: var(--color-text-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.top-bar__nav a:hover,
+.top-bar__nav a.is-active {
+    background-color: var(--color-primary-soft);
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+/* Layout principal */
+
+.layout {
+    max-width: 1120px;
+    margin: 1.25rem auto 2rem;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Tarjetas */
+
+.card {
+    background-color: var(--color-card);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+    padding: 1rem 1.25rem;
+}
+
+.card--profile {
+    padding-top: 0;
+}
+
+.card-title {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    color: #e6edf3;
+}
+
+/* Perfil lateral */
+
+.profile-photo {
+    height: 56px;
+    background: linear-gradient(120deg, #1f6feb, #58a6ff);
+    margin: 0 -1.25rem 1.75rem;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    position: relative;
+}
+
+.profile-avatar,
+.profile-avatar-fallback {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 2px solid var(--color-card);
+}
+
+.profile-avatar {
+    object-fit: cover;
+    background-color: #0b1220;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+.profile-avatar.is-loaded {
+    opacity: 1;
+}
+
+.profile-avatar-fallback {
+    background-color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--color-link);
+    font-family: var(--font-mono);
+}
+
+.profile-avatar-fallback.is-hidden {
+    display: none;
+}
+
+.profile-name {
+    margin-top: 2.25rem;
+    margin-bottom: 0.25rem;
+    font-size: 1.2rem;
+}
+
+.profile-title {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.profile-location {
+    margin: 0.5rem 0 0.75rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Botones */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn--primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+}
+
+.btn--primary:hover {
+    background-color: #0f5bd8;
+    border-color: #0f5bd8;
+}
+
+.btn--outline {
+    background-color: transparent;
+    color: var(--color-link);
+    border-color: var(--color-border);
+}
+
+.btn--outline:hover {
+    background-color: var(--color-primary-soft);
+    border-color: rgba(88, 166, 255, 0.5);
+}
+
+/* Listas */
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.contact-list li + li {
+    margin-top: 0.4rem;
+}
+
+.pill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0.5rem 0 0;
+}
+
+.pill-list--wrap {
+    margin-top: 0.75rem;
+}
+
+.pill-list li {
+    background-color: #21262d;
+    border: 1px solid var(--color-border);
+    color: #d7e3f4;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+}
+
+.bullet-list {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+}
+
+.bullet-list li + li {
+    margin-top: 0.25rem;
+}
+
+/* Educación */
+
+.education-item h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.education-degree {
+    margin: 0.1rem 0;
+    font-size: 0.9rem;
+}
+
+.education-period {
+    margin: 0.1rem 0;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+/* Contacto */
+
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+/* Responsivo */
+
+@media (max-width: 840px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar__nav {
+        gap: 0.4rem;
+    }
+
+    .profile-actions,
+    .contact-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* (Se eliminó un bloque extra de estilos duplicados que pisaba el diseño) */
